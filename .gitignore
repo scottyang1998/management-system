@@ -1,0 +1,6 @@
+test.txt
+*.bak
+*.zip
+~*.*
+bin/
+D[d]ebug/
