@@ -1,0 +1,46 @@
+<html>
+
+<head>
+
+    <script type="text/javascript">
+        function parseXML() {
+
+            try {
+
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+            } catch (e) {
+
+                try {
+
+                    xmlDoc = document.implementation.createDocument("", "", null);
+                } catch (e) {
+
+                    alert(e.message);
+                    return;
+                }
+            }
+            xmlDoc.async = false;
+            xmlDoc.load("./note.xml");
+
+            document.getElementById("list").innerHTML = xmlDoc.getElementsByTagName("list")[0].childNodes[0].nodeValue;
+            document.getElementById("header").innerHTML = xmlDoc.getElementsByTagName("heade")[0].childNodes[0].nodeValue;
+            document.getElementById("student1").innerHTML = xmlDoc.getElementsByTagName("student1")[0].childNodes[0].nodeValue;
+            document.getElementById("student2").innerHTML = xmlDoc.getElementsByTagName("student2")[0].childNodes[0].nodeValue;
+
+        }
+    </script>
+</head>
+
+<body onload="parseXML()">
+    <p>
+
+        <span id="list"></span><br/>
+        <span id="header"></span><br/>
+        <span id="student1"></span><br/>
+        <span id="student2"></span>
+        <p>
+
+
+</body>
+
+</html>
