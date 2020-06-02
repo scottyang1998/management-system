@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="3117005001.gdut.edu.cn" 
+	xmlns:tns="3117005001.gdut.edu.cn" 
+	elementFormDefault="qualified">
+
+    <element name="students" type="string"></element>
+
+    <element name="sno" type="string"></element>
+
+    <element name="name" type="string"></element>
+
+    <element name="student" type="string"></element>
+</schema>
