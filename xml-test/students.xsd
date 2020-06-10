@@ -4,11 +4,19 @@
 	xmlns:tns="3117005001.gdut.edu.cn" 
 	elementFormDefault="qualified">
 
-    <element name="students" type="string"></element>
+    <complexType name="students">
+    	<sequence>
+    		<element name="student" type="tns:student" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+    
+    <element name="students" type="tns:students"></element>
 
-    <element name="sno" type="string"></element>
-
-    <element name="name" type="string"></element>
-
-    <element name="student" type="string"></element>
+    <complexType name="student">
+    	<sequence>
+    		<element name="sno" type="string"></element>
+    		<element name="name" type="string"></element>
+    	</sequence>
+    </complexType>
+    
 </schema>
