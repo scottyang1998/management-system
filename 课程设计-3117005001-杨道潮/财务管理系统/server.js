@@ -1,35 +1,27 @@
-const express = require('express');
-const app = express();
+const express = require("express");
+const mongoose = require("mongoose");
+const app = express(); //实例化app
 
+//引入users.js
+const users = require("./router/api/users");
 
-//DB config
-//const db = require('./config/key').mongoURI;
+//DB
+const db = require("./config/db.js").MongoURI;
 
-
+//Connect to mongodb
+mongoose.connect(db)
+        .then(()=>console.log("Mongodb CONNECTED"))
+        .catch(err=>console.log(err));
 
 app.get("/", (req, res) => {
     res.send('hello worlll666l');
 })
 
-// const port = process.env.PORT || 5000;
+//使用routers
+app.use("/api/users",users);
 
-// app.listen(port, () => {
-//     console.log(`Server is running on port ${port}`);
-// })
-//监听5000端口
-var server = app.listen(5000, function() {
-    console.log('Listening on port %d', server.address().port);
-});
+const port = process.env.PORT || 5000;
 
-const mongoose = require('mongoose');
-
-
-var db = mongoose.connect('mongodb://localhost:27017/finansys').connection;
-
-
-//Connect to mongodb
-mongoose.connect(db)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
-
-module.exports = mongoose;
+app.listen(port,()=>{
+    console.log(`Server running on port ${port}`);
+})
