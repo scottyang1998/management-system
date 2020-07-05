@@ -1,12 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const app = express(); //实例化app
 
 //引入users.js
 const users = require("./router/api/users");
 
-//DB
+//DB config
 const db = require("./config/db.js").MongoURI;
+
+//body-parser中间件
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 //Connect to mongodb
 mongoose.connect(db)
