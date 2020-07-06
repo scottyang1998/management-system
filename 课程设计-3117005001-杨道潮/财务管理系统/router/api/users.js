@@ -9,12 +9,12 @@ const passport = require("passport");
 
 const User = require("../../models/User");
 
-//$router GET api/users/test
-//@desc  返回请求的json数据
-//@access public
-// router.get("/ydc2020",(req,res)=>{
-//     res.json({msg:"login works"})
-// })
+// $router GET api/users/test
+// @desc  返回请求的json数据
+// @access public
+router.get("/ydc2020",(req,res)=>{
+    res.json({msg:"login works"})
+})
 
 //$router POST api/users/test
 //@desc  返回请求的json数据
