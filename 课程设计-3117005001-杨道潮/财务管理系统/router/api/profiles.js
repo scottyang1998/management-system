@@ -23,12 +23,44 @@ router.post("/add",passport.authenticate('jwt',{session:false}),(req,res)=>{
     if(req.body.income) profileFields.income = req.body.income;
     if(req.body.expend) profileFields.expend = req.body.expend;
     if(req.body.cash) profileFields.cash = req.body.cash;
-    if(req.body.remark) profileFields.remark = req.body.remark;
+    if(req.body.remark) profileFields.remark = req.body.remark;   
 
     new Profile(profileFields).save().then(profile=>{
         res.json(profile);
-    })
+    }) 
 })
+
+
+// //$router get api/profiles/
+// //@desc  获取所有信息
+// //@access private
+router.get("/",passport.authenticate('jwt',{session:false}),(req,res)=>{
+    Profile.find()
+    .then(profile=>{
+        if(!profile){
+            return res.status(404).json("没有任何内容");
+        }
+        res.json(profile);
+    })
+    .catch(err=>res.status(404).json(err));
+})
+
+// //$router get api/profiles/:id
+// //@desc  获取单个信息
+// //@access private
+router.get(
+    "/:id",
+    passport.authenticate('jwt',{session:false}),(req,res)=>{
+    Profile.findOne({_id:req.params.id})
+    .then(profile=>{
+        if(!profile){
+            return res.status(404).json("没有任何内容");
+        }
+        res.json(profile);
+    })
+    .catch(err=>res.status(404).json(err));
+})
+
 
 
 // router.post("/register",(req,res)=>{
