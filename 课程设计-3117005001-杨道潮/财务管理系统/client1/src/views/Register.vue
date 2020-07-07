@@ -82,24 +82,26 @@ export default {
     },
     methods: {
     submitForm(formName) {
+        //console.log(formName);
         this.$refs[formName].validate(valid => {
         if (valid) {
-            this.$axios
-            .post("/api/users/register", this.registerUser)
-            .then(res => {
-              // 注册成功
-                this.$message({
-                message: "注册成功！",
-                type: "success"
-                });
-              // this.$router.push("/login");
-            });
+            alert("summit");
+            // this.$axios
+            // .post("/api/users/register", this.registerUser)
+            // .then(res => {
+            //   // 注册成功
+            //     this.$message({
+            //     message: "注册成功！",
+            //     type: "success"
+            //     });
+            //   // this.$router.push("/login");
+            // });
         } else {
             console.log("error submit!!");
             return false;
         }
         });
-    }
+        }
     }
 };
 </script>
@@ -141,6 +143,5 @@ export default {
     width: 100%;
 }
 </style>
-
 
 
