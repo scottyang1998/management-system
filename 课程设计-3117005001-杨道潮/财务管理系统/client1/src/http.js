@@ -1,5 +1,6 @@
 import axios from 'axios' 
 import { Message,Loading } from 'element-ui'
+import router from './router/index'
 
 
 let loading        //定义loading变量
@@ -19,8 +20,8 @@ function endLoading() {    //使用Element loading-close 方法
 axios.interceptors.request.use(config => {
     // 加载
     startLoading()
-    // if (localStorage.eleToken)
-    //     config.headers.Authorization = localStorage.eleToken
+    if (localStorage.eleToken)
+        config.headers.Authorization = localStorage.eleToken
     return config
 }, error => {
     return Promise.reject(error)
@@ -35,15 +36,15 @@ axios.interceptors.response.use(response => {
     endLoading()
     Message.error(error.response.data)
 
-    // const { status } = error.response
-    // if (status == 401) {
-    //     Message.error('token值无效，请重新登录')
-    //     // 清除token
-    //     localStorage.removeItem('eleToken')
+    const { status } = error.response
+    if (status == 401) {
+        Message.error('token值无效，请重新登录')
+        // 清除token
+        localStorage.removeItem('eleToken')
 
-    //     // 页面跳转
-    //     router.push('/login')
-    // }
+        // 页面跳转
+        router.push('/login')
+    }
 
     return Promise.reject(error)
 })
