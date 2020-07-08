@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <div class="container">
-            <h1 class="title">在线</h1>
-            <p class="lead"> 专注! </p>
+            <h1 class="title">欢迎进入后台管理系统</h1>
+            <p class="lead">  </p>
         </div>
     </div>
 </template>
