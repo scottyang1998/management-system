@@ -4,6 +4,15 @@ import Index from '../views/index.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import NotFound from '../views/404.vue'
+import Home from '../views/Home.vue'
+import InfoShow from '../views/Infoshow.vue'
+
+// 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 
 Vue.use(VueRouter)
 
@@ -15,7 +24,15 @@ const routes = [
   {
     path: '/index',
     name: 'index',
-    component: Index
+    component: Index,
+    children: [
+      { path: '', component: Home },
+      { path: '/home', name: 'home', component: Home },
+      { path: '/infoshow', name: 'infoshow', component: InfoShow },
+      // { path: '/foundlist', name: 'foundlist', component: FoundList }
+
+
+    ]
   },
   {
     path: '/register',
